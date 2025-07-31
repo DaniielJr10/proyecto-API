@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Menú de Gestión de Productos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .menu a {
+            display: block;
+            width: 250px;
+            padding: 15px;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .menu a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Gestión de Productos - CRUD</h1>
+
+    <div class="menu">
+        <a href="registrarProducto.html">Registrar Producto</a>
+        <a href="actualizarProducto.html">Actualizar Producto</a>
+        <a href="eliminarProducto.html">Eliminar Producto</a>
+        <a href="listarProductos.html">Listar Productos</a>
+    </div>
+
+</body>
+</html>

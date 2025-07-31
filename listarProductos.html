@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Productos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tabla-contenedor {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .volver {
+            display: block;
+            width: 200px;
+            margin: 30px auto 0;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .volver:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Listado de Productos</h1>
+    <div class="tabla-contenedor">
+        <table id="productosTabla">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <a href="menu.html" class="volver">Volver al menú</a>
+
+    <script>
+        async function cargarProductos() {
+            try {
+                const res = await fetch('http://localhost:3000/api/productos');
+                const productos = await res.json();
+                const tbody = document.querySelector("#productosTabla tbody");
+                tbody.innerHTML = "";
+
+                productos.forEach(prod => {
+                    const fila = `
+                        <tr>
+                            <td>${prod.id}</td>
+                            <td>${prod.nombre}</td>
+                            <td>$${parseFloat(prod.precio).toFixed(2)}</td>
+                            <td>${prod.descripcion}</td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += fila;
+                });
+            } catch (error) {
+                alert("Error al cargar productos: " + error.message);
+            }
+        }
+
+        cargarProductos();
+    </script>
+
+</body>
+</html>
